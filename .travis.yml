@@ -3,8 +3,24 @@ scala:
   - 2.11.11
 jdk:
   - oraclejdk8
+
+cache:
+  directories:
+  - $HOME/protobuf
+
+sudo: false
+
+# Install protocol buffers.
+before_install:
+  - bash install-protobuf.sh
+# Check installed subdirectories.
+before_script:
+  - ls -R $HOME/protobuf
+
 script:
+  - export PATH=$PATH:$HOME/protobuf/bin
   - sbt clean coverage test coverageReport
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
