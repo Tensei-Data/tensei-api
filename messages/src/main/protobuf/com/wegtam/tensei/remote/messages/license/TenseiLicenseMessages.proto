@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages.license;
+
+import "scalapb/scalapb.proto";
+import "com/wegtam/tensei/remote/messages/license/LicenseValidationResult.proto";
+
+option java_multiple_files = false;
+option optimize_for        = SPEED;
+
+option (scalapb.options) = {
+  // All classes that extend a sealed trait need to be in the same Scala
+  // file, so we set single_file to true.
+  single_file: true
+
+  // Generate the base trait.
+  preamble: "sealed trait TenseiLicenseMessages"
+};
+
+message AllowedNumberOfAgents {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    int32 count = 1;
+}
+
+message AllowedNumberOfConfigurations {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    int32 count = 1;
+}
+
+message AllowedNumberOfCronjobs {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    int32 count = 1;
+}
+
+message AllowedNumberOfTriggers {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    int32 count = 1;
+}
+
+message AllowedNumberOfUsers {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    int32 count = 1;
+}
+
+message LicenseEntitiesData {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    int32 agents         = 1;
+    int32 configurations = 2;
+    int32 cronjobs       = 3;
+    int32 trigger        = 4;
+    int32 users          = 5;
+}
+
+message LicenseExpiresIn {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    string period = 1;
+}
+
+message LicenseMetaData {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    string id       = 1;
+    string licensee = 2;
+    string period   = 3;
+}
+
+message NoLicenseInstalled {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportAllowedNumberOfAgents {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportAllowedNumberOfConfigurations {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportAllowedNumberOfCronjobs {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportAllowedNumberOfTriggers {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportAllowedNumberOfUsers {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportLicenseExpirationPeriod {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportLicenseMetaData {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message ReportLicenseEntitiesData {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+}
+
+message UpdateLicense {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    string encoded_license = 1;
+}
+
+message UpdateLicenseResult {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    bool succeeded = 1;
+    string message = 2;
+}
+
+message ValidateLicense {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    string encoded_license = 1;
+}
+
+message ValidateLicenseResult {
+    option (scalapb.message).extends = "TenseiLicenseMessages";
+    LicenseValidationResult result = 1;
+}

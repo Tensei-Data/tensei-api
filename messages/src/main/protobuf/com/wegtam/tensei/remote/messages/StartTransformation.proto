@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ConnectionInformation.proto";
+import "com/wegtam/tensei/remote/adt/Cookbook.proto";
+
+message StartTransformation {
+    string id                                                           = 1;
+    com.wegtam.tensei.remote.adt.Cookbook cookbook                      = 2;
+    repeated com.wegtam.tensei.remote.adt.ConnectionInformation sources = 3;
+    com.wegtam.tensei.remote.adt.ConnectionInformation target           = 4;
+}

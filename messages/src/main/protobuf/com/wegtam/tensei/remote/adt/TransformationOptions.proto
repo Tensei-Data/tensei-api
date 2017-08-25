@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+message TransformationOption {
+    string name  = 1;
+    string value = 2;
+}
+
+message TransformationOptions {
+    repeated TransformationOption options = 1;
+    string src_type = 2;
+    string dst_type = 3;
+}

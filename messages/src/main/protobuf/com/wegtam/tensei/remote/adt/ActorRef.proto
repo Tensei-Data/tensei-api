@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+message ActorRef {
+    string path = 1; // Use `Serialization.serializedActorPath(theActorRef)` to get the path and `extendedSystem.provider.resolveActorRef(identifier)` to get an ActorRef.
+}

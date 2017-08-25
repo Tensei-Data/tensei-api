@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/DFASDLReference.proto";
+
+message ConnectionInformation {
+    string uri = 1;
+    DFASDLReference dfasdl_ref = 2;
+    string username = 3;
+    string password = 4;
+    string checksum = 5;
+    string language_tag = 6;
+}

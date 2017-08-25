@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ActorRef.proto";
+import "com/wegtam/tensei/remote/states/AgentAuthorisationState.proto";
+import "com/wegtam/tensei/remote/states/AgentWorkingState.proto";
+
+message AgentInformation {
+    string id                                                       = 1;
+    com.wegtam.tensei.remote.adt.ActorRef ref                       = 2;
+    com.wegtam.tensei.remote.states.AgentAuthorisationState auth    = 3;
+    int64 last_updated                                              = 4;
+    com.wegtam.tensei.remote.states.AgentWorkingState working_state = 5;
+}

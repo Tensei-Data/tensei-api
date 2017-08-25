@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ConnectionInformation.proto";
+import "com/wegtam/tensei/remote/adt/DFASDL.proto";
+import "com/wegtam/tensei/remote/adt/ExtractSchemaOptions.proto";
+
+message ExtractSchemaResult {
+    com.wegtam.tensei.remote.adt.ConnectionInformation source = 1;
+    com.wegtam.tensei.remote.adt.ExtractSchemaOptions options = 2;
+    com.wegtam.tensei.remote.adt.DFASDL dfasdl                = 3;
+    string error_message                                      = 4;
+}

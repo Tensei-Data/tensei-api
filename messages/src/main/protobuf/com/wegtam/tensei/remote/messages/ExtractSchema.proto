@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages;
+
+option java_multiple_files = false;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ConnectionInformation.proto";
+import "com/wegtam/tensei/remote/adt/ExtractSchemaOptions.proto";
+
+message ExtractSchema {
+    com.wegtam.tensei.remote.adt.ConnectionInformation source = 1;
+    com.wegtam.tensei.remote.adt.ExtractSchemaOptions options = 2;
+}

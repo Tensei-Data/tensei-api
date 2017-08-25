@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+message AgentRunLogLine {
+    string run_id   = 1;
+    string log_line = 2;
+    int64 offset    = 3;
+}

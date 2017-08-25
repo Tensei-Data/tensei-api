@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.states;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum ParserState {
+    ParserIdle                   = 0;
+    ParserValidatingSyntax       = 1;
+    ParserValidatingChecksums    = 2;
+    ParserPreparingSourceData    = 3;
+    ParserInitializingSubParsers = 4;
+    ParserParsing                = 5;
+}

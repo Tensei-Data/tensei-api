@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum StatusType {
+    MinorError = 0;
+    MajorError = 1;
+    FatalError = 3;
+    NoAgentAvailable = 4;
+}

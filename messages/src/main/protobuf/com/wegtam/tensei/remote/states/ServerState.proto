@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.states;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum ServerState {
+    ServerBooting      = 0;
+    ServerInitialising = 1;
+    ServerRunning      = 2;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.states;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum ProcessorState {
+    ProcessorIdle                    = 0;
+    ProcessorSorting                 = 1;
+    ProcessorProcessing              = 2;
+    ProcessorWaitingForWriterClosing = 3;
+}

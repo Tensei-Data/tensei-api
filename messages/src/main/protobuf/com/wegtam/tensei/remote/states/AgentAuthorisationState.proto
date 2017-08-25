@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.states;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum AgentAuthorisationState {
+    AgentConnected    = 0;
+    AgentDisconnected = 1;
+    AgentUnauthorised = 2;
+}

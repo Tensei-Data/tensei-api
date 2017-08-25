@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ActorRef.proto";
+
+message AgentReporting {
+    string id                                 = 1;
+    com.wegtam.tensei.remote.adt.ActorRef ref = 2;
+}

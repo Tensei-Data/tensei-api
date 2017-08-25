@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.states;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/RuntimeStats.proto";
+import "com/wegtam/tensei/remote/states/AgentState.proto";
+import "com/wegtam/tensei/remote/states/ParserState.proto";
+import "com/wegtam/tensei/remote/states/ProcessorState.proto";
+
+message AgentWorkingState {
+    string id                           = 1;
+    AgentState state                    = 2;
+    ParserState parser                  = 3;
+    ProcessorState processor            = 4;
+    repeated com.wegtam.tensei.remote.adt.RuntimeStats runtime_stats = 5;
+    string unique_identifier            = 6;
+}

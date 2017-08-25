@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ElementReference.proto";
+import "com/wegtam/tensei/remote/adt/TransformationOptions.proto";
+
+message AtomicTransformationDescription {
+    ElementReference element      = 1;
+    string transformer_class_name = 2;
+    TransformationOptions options = 3;
+}

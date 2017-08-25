@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+message RequestAgentRunLogs {
+    string id      = 1;
+    string run_id  = 2;
+    int64 offset   = 3;
+    int64 max_size = 4;
+}

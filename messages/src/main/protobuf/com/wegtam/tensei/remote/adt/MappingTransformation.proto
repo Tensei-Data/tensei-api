@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.adt;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+import "com/wegtam/tensei/remote/adt/ElementReference.proto";
+import "com/wegtam/tensei/remote/adt/AtomicTransformationDescription.proto";
+import "com/wegtam/tensei/remote/adt/MappingKeyFieldDefinition.proto";
+import "com/wegtam/tensei/remote/adt/TransformationDescription.proto";
+
+message MappingTransformation {
+    repeated ElementReference sources                               = 1;
+    repeated ElementReference targets                               = 2;
+    repeated TransformationDescription transformations              = 3;
+    repeated AtomicTransformationDescription atomic_transformations = 4;
+    MappingKeyFieldDefinition mapping_key                           = 5;
+}

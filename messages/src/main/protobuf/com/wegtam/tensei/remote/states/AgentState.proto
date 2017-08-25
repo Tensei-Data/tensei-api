@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.states;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum AgentState {
+    AgentIdle                  = 0;
+    AgentAborting              = 1;
+    AgentCleaningUp            = 2;
+    AgentInitializingResources = 3;
+    AgentWorking               = 4;
+}

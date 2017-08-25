@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.wegtam.tensei.remote.messages.license;
+
+option java_multiple_files = true;
+option optimize_for        = SPEED;
+
+enum LicenseValidationResult {
+    InvalidDamaged   = 0;
+    InvalidExpired   = 1;
+    InvalidSignature = 2;
+    InvalidUnsigned  = 3;
+    Valid            = 4;
+}
