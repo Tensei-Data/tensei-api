@@ -4,7 +4,7 @@ set -e
 if [ ! -d "$HOME/protobuf/bin" ]; then
   VER="3.4.0"
   wget "https://github.com/google/protobuf/releases/download/v3.4.0/protoc-${VER}-linux-x86_64.zip"
-  unzip -d "${HOME}/protobuf" "protoc-${VER}.zip"
+  unzip -d "${HOME}/protobuf" "protoc-${VER}-linux-x86_64.zip"
 else
   echo "Using cached directory."
 fi
