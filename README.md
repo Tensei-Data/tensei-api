@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Tensei-Data/tensei-api.svg?branch=master)](https://travis-ci.org/Tensei-Data/tensei-api)
 [![codecov](https://codecov.io/gh/Tensei-Data/tensei-api/branch/master/graph/badge.svg)](https://codecov.io/gh/Tensei-Data/tensei-api)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2d647ef10b7b404c9bbd00f4e322d97a)](https://www.codacy.com/app/jan0sch/tensei-api)
 [![Download](https://api.bintray.com/packages/wegtam/tensei-data/tensei-api/images/download.svg)](https://bintray.com/wegtam/tensei-data/tensei-api/_latestVersion)
 
 This project is intended to provide libraries that provide shared 
