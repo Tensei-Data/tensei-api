@@ -50,8 +50,8 @@ class AtomicTransformationDescriptionTest extends DefaultSpec {
         val jsonString =
           """{"element":{"elementId":"ANOTHER-SOURCE-ID","dfasdlId":"DFASDL-ID"},"transformerClassName":"com.example.transformers.bar","options":{"srcType":"java.lang.Integer","dstType":"java.lang.Long","params":[["one","1"],["two","Zweikommasechs"],["three","3.14f"]]}}"""
         Parse.decodeEither[AtomicTransformationDescription](jsonString) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒
+          case -\/(failure) => fail(failure)
+          case \/-(success) =>
             success must be(expected)
             success.element must be(expected.element)
             success.transformerClassName must be(expected.transformerClassName)

@@ -24,11 +24,11 @@ import argonaut._, Argonaut._
   */
 sealed trait TenseiAgentState {
   override def toString: String = this match {
-    case TenseiAgentState.Aborting              ⇒ "Aborting"
-    case TenseiAgentState.CleaningUp            ⇒ "CleaningUp"
-    case TenseiAgentState.Idle                  ⇒ "Idle"
-    case TenseiAgentState.InitializingResources ⇒ "InitializingResources"
-    case TenseiAgentState.Working               ⇒ "Working"
+    case TenseiAgentState.Aborting              => "Aborting"
+    case TenseiAgentState.CleaningUp            => "CleaningUp"
+    case TenseiAgentState.Idle                  => "Idle"
+    case TenseiAgentState.InitializingResources => "InitializingResources"
+    case TenseiAgentState.Working               => "Working"
   }
 }
 
@@ -36,18 +36,18 @@ object TenseiAgentState {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def TenseiAgentStateCodecJson: CodecJson[TenseiAgentState] =
     CodecJson(
-      (s: TenseiAgentState) ⇒ jString(s.toString),
-      c ⇒
+      (s: TenseiAgentState) => jString(s.toString),
+      c =>
         for {
-          s ← c.as[String]
+          s <- c.as[String]
         } yield
           s match {
-            case "Aborting"              ⇒ Aborting
-            case "CleaningUp"            ⇒ CleaningUp
-            case "Idle"                  ⇒ Idle
-            case "InitializingResources" ⇒ InitializingResources
-            case "Working"               ⇒ Working
-            case e: String               ⇒ throw new IllegalArgumentException(s"Unknown TenseiAgentState: '$e'!")
+            case "Aborting"              => Aborting
+            case "CleaningUp"            => CleaningUp
+            case "Idle"                  => Idle
+            case "InitializingResources" => InitializingResources
+            case "Working"               => Working
+            case e: String               => throw new IllegalArgumentException(s"Unknown TenseiAgentState: '$e'!")
         }
     )
 

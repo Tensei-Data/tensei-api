@@ -39,12 +39,12 @@ object DFASDLReference {
 
   implicit def DFASDLReferenceCodecJson: CodecJson[DFASDLReference] =
     CodecJson(
-      (r: DFASDLReference) ⇒
+      (r: DFASDLReference) =>
         ("dfasdl-id" := r.dfasdlId) ->: ("cookbook-id" := r.cookbookId) ->: jEmptyObject,
-      cursor ⇒
+      cursor =>
         for {
-          cid ← (cursor --\ "cookbook-id").as[String]
-          did ← (cursor --\ "dfasdl-id").as[String]
+          cid <- (cursor --\ "cookbook-id").as[String]
+          did <- (cursor --\ "dfasdl-id").as[String]
         } yield DFASDLReference(cid, did)
     )
 

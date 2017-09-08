@@ -32,14 +32,14 @@ object TransformationDescription {
 
   implicit def TransformationDescriptionCodecJson: CodecJson[TransformationDescription] =
     CodecJson(
-      (t: TransformationDescription) ⇒
+      (t: TransformationDescription) =>
         ("options" := t.options) ->:
           ("transformerClassName" := t.transformerClassName.toString) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          transformerClassName ← (c --\ "transformerClassName").as[String]
-          options              ← (c --\ "options").as[TransformerOptions]
+          transformerClassName <- (c --\ "transformerClassName").as[String]
+          options              <- (c --\ "options").as[TransformerOptions]
         } yield TransformationDescription(transformerClassName, options)
     )
 

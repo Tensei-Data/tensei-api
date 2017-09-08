@@ -39,25 +39,25 @@ final case class AgentStartTransformationMessage(
     *
     * @return `true` if at least one of the sources defines a checksum and `false` otherwise.
     */
-  def hasChecksums: Boolean = sources.exists(c ⇒ c.checksum.exists(_.length > 0))
+  def hasChecksums: Boolean = sources.exists(c => c.checksum.exists(_.length > 0))
 }
 
 object AgentStartTransformationMessage {
   implicit def AgentStartTransformationMessageCodecJson
     : CodecJson[AgentStartTransformationMessage] =
     CodecJson(
-      (a: AgentStartTransformationMessage) ⇒
+      (a: AgentStartTransformationMessage) =>
         ("uniqueIdentifier" := a.uniqueIdentifier) ->:
           ("cookbook" := a.cookbook) ->:
           ("sources" := a.sources) ->:
           ("target" := a.target) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          sources          ← (c --\ "sources").as[List[ConnectionInformation]]
-          target           ← (c --\ "target").as[ConnectionInformation]
-          cookbook         ← (c --\ "cookbook").as[Cookbook]
-          uniqueIdentifier ← (c --\ "uniqueIdentifier").as[Option[String]]
+          sources          <- (c --\ "sources").as[List[ConnectionInformation]]
+          target           <- (c --\ "target").as[ConnectionInformation]
+          cookbook         <- (c --\ "cookbook").as[Cookbook]
+          uniqueIdentifier <- (c --\ "uniqueIdentifier").as[Option[String]]
         } yield AgentStartTransformationMessage(sources, target, cookbook, uniqueIdentifier)
     )
 

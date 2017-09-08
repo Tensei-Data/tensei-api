@@ -52,21 +52,21 @@ object MappingTransformation {
 
   implicit def MappingTransformationCodecJson: CodecJson[MappingTransformation] =
     CodecJson(
-      (m: MappingTransformation) ⇒
+      (m: MappingTransformation) =>
         ("mappingKey" := m.mappingKey) ->:
           ("atomicTransformations" := m.atomicTransformations) ->:
           ("transformations" := m.transformations) ->:
           ("targets" := m.targets) ->:
           ("sources" := m.sources) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          sources         ← (c --\ "sources").as[List[ElementReference]]
-          targets         ← (c --\ "targets").as[List[ElementReference]]
-          transformations ← (c --\ "transformations").as[List[TransformationDescription]]
-          atomicTransformations ← (c --\ "atomicTransformations")
+          sources         <- (c --\ "sources").as[List[ElementReference]]
+          targets         <- (c --\ "targets").as[List[ElementReference]]
+          transformations <- (c --\ "transformations").as[List[TransformationDescription]]
+          atomicTransformations <- (c --\ "atomicTransformations")
             .as[List[AtomicTransformationDescription]]
-          mappingKeys ← (c --\ "mappingKey").as[Option[MappingKeyFieldDefinition]]
+          mappingKeys <- (c --\ "mappingKey").as[Option[MappingKeyFieldDefinition]]
         } yield
           MappingTransformation(sources,
                                 targets,

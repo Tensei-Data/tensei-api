@@ -41,12 +41,12 @@ object ElementReference {
 
   implicit def ElementReferenceCodecJson: CodecJson[ElementReference] =
     CodecJson(
-      (r: ElementReference) ⇒
+      (r: ElementReference) =>
         ("dfasdlId" := r.dfasdlId) ->: ("elementId" := r.elementId) ->: jEmptyObject,
-      c ⇒
+      c =>
         for {
-          did ← (c --\ "dfasdlId").as[String]
-          eid ← (c --\ "elementId").as[String]
+          did <- (c --\ "dfasdlId").as[String]
+          eid <- (c --\ "elementId").as[String]
         } yield ElementReference(dfasdlId = did, elementId = eid)
     )
 

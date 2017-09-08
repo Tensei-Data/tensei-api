@@ -38,17 +38,17 @@ object RuntimeStats {
 
   implicit def RuntimeStatsCodecJson: CodecJson[RuntimeStats] =
     CodecJson(
-      (s: RuntimeStats) ⇒
+      (s: RuntimeStats) =>
         ("load" := s.systemLoad) ->: ("processors" := jNumber(s.processors)) ->: ("total" := jNumber(
           s.totalMemory
         )) ->: ("max" := jNumber(s.maxMemory)) ->: ("free" := jNumber(s.freeMemory)) ->: jEmptyObject,
-      c ⇒
+      c =>
         for {
-          free  ← (c --\ "free").as[Long]
-          max   ← (c --\ "max").as[Long]
-          total ← (c --\ "total").as[Long]
-          p     ← (c --\ "processors").as[Int]
-          load  ← (c --\ "load").as[Option[Double]]
+          free  <- (c --\ "free").as[Long]
+          max   <- (c --\ "max").as[Long]
+          total <- (c --\ "total").as[Long]
+          p     <- (c --\ "processors").as[Int]
+          load  <- (c --\ "load").as[Option[Double]]
         } yield
           RuntimeStats(freeMemory = free,
                        maxMemory = max,

@@ -37,14 +37,14 @@ case class StatusMessage(
 ) {
 
   override def toString: String =
-    s"""$statusType Status: $message ${cause.fold("")(c ⇒ s"""(CAUSED BY $c) """)}(REPORTED BY ${reporter
+    s"""$statusType Status: $message ${cause.fold("")(c => s"""(CAUSED BY $c) """)}(REPORTED BY ${reporter
       .getOrElse("None")})"""
 
   override def equals(obj: scala.Any): Boolean =
     obj match {
-      case other: StatusMessage ⇒
+      case other: StatusMessage =>
         reporter == other.reporter && message == other.message && statusType == other.statusType && cause == other.cause
-      case _ ⇒ false
+      case _ => false
     }
 
   override def hashCode(): Int =
@@ -62,7 +62,7 @@ object StatusMessage {
     */
   implicit def ErrorMessageEncodeJson: EncodeJson[StatusMessage] =
     EncodeJson(
-      (m: StatusMessage) ⇒
+      (m: StatusMessage) =>
         ("cause" := m.cause) ->: ("statusType" := m.statusType) ->: ("message" := jString(
           m.message
         )) ->: ("reporter" := m.reporter) ->: jEmptyObject
@@ -75,12 +75,12 @@ object StatusMessage {
     */
   implicit def ErrorMessageDecodeJson: DecodeJson[StatusMessage] =
     DecodeJson(
-      cursor ⇒
+      cursor =>
         for {
-          reporter ← (cursor --\ "reporter").as[Option[String]]
-          message  ← (cursor --\ "message").as[String]
-          severity ← (cursor --\ "statusType").as[StatusType]
-          cause    ← (cursor --\ "cause").as[Option[StatusMessage]]
+          reporter <- (cursor --\ "reporter").as[Option[String]]
+          message  <- (cursor --\ "message").as[String]
+          severity <- (cursor --\ "statusType").as[StatusType]
+          cause    <- (cursor --\ "cause").as[Option[StatusMessage]]
         } yield new StatusMessage(reporter, message, severity, cause)
     )
 
@@ -91,6 +91,6 @@ object StatusMessage {
     * @return The option containing the path as string or `None` if no actor ref was given.
     */
   def getReporterStringFromActorRef(ref: Option[ActorRef]): Option[String] =
-    ref.map(r ⇒ r.path.toSerializationFormatWithAddress(r.path.address))
+    ref.map(r => r.path.toSerializationFormatWithAddress(r.path.address))
 
 }

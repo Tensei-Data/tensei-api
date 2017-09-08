@@ -43,16 +43,16 @@ object TransformerOptions {
   // Codec for encoding and decoding a whole `TransformerOptions` object.
   implicit def TransformerOptionsCodecJson: CodecJson[TransformerOptions] =
     CodecJson(
-      (o: TransformerOptions) ⇒
+      (o: TransformerOptions) =>
         ("params" := o.params) ->:
           ("dstType" := jString(o.dstType.getCanonicalName)) ->:
           ("srcType" := jString(o.srcType.getCanonicalName)) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          srcType ← (c --\ "srcType").as[String]
-          dstType ← (c --\ "dstType").as[String]
-          params  ← (c --\ "params").as[List[(String, String)]]
+          srcType <- (c --\ "srcType").as[String]
+          dstType <- (c --\ "dstType").as[String]
+          params  <- (c --\ "params").as[List[(String, String)]]
         } yield TransformerOptions(Class.forName(srcType), Class.forName(dstType), params)
     )
 

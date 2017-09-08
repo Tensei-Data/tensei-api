@@ -24,10 +24,10 @@ import argonaut._, Argonaut._
   */
 sealed trait ProcessorState {
   override def toString: String = this match {
-    case ProcessorState.Idle                    ⇒ "Idle"
-    case ProcessorState.Sorting                 ⇒ "Sorting"
-    case ProcessorState.Processing              ⇒ "Processing"
-    case ProcessorState.WaitingForWriterClosing ⇒ "WaitingForWriterClosing"
+    case ProcessorState.Idle                    => "Idle"
+    case ProcessorState.Sorting                 => "Sorting"
+    case ProcessorState.Processing              => "Processing"
+    case ProcessorState.WaitingForWriterClosing => "WaitingForWriterClosing"
   }
 }
 
@@ -35,17 +35,17 @@ object ProcessorState {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def ProcessorStateCodecJson: CodecJson[ProcessorState] =
     CodecJson(
-      (s: ProcessorState) ⇒ jString(s.toString),
-      c ⇒
+      (s: ProcessorState) => jString(s.toString),
+      c =>
         for {
-          s ← c.as[String]
+          s <- c.as[String]
         } yield
           s match {
-            case "Idle"                    ⇒ Idle
-            case "Sorting"                 ⇒ Sorting
-            case "Processing"              ⇒ Processing
-            case "WaitingForWriterClosing" ⇒ WaitingForWriterClosing
-            case e: String                 ⇒ throw new IllegalArgumentException(s"Unknown ProcessorState: '$e'!")
+            case "Idle"                    => Idle
+            case "Sorting"                 => Sorting
+            case "Processing"              => Processing
+            case "WaitingForWriterClosing" => WaitingForWriterClosing
+            case e: String                 => throw new IllegalArgumentException(s"Unknown ProcessorState: '$e'!")
         }
     )
 

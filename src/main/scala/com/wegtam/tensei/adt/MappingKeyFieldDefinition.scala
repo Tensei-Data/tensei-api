@@ -34,10 +34,10 @@ object MappingKeyFieldDefinition {
 
   implicit def MappingKeyFieldDefinitionCodecJson: CodecJson[MappingKeyFieldDefinition] =
     CodecJson(
-      (m: MappingKeyFieldDefinition) ⇒ ("name" := m.name) ->: jEmptyObject,
-      cursor ⇒
+      (m: MappingKeyFieldDefinition) => ("name" := m.name) ->: jEmptyObject,
+      cursor =>
         for {
-          name ← (cursor --\ "name").as[String]
+          name <- (cursor --\ "name").as[String]
         } yield MappingKeyFieldDefinition(name)
     )
 

@@ -65,9 +65,9 @@ class AgentInformationTest extends DefaultSpec {
                 parser = ParserState.Parsing,
                 processor = ProcessorState.Idle,
                 runtimeStats = Map(
-                  "agent1.example.com" → new RuntimeStats(freeMemory = 111101592,
-                                                          maxMemory = 1900019712,
-                                                          totalMemory = 128974848)
+                  "agent1.example.com" -> new RuntimeStats(freeMemory = 111101592,
+                                                           maxMemory = 1900019712,
+                                                           totalMemory = 128974848)
                 )
               )
             )
@@ -91,9 +91,9 @@ class AgentInformationTest extends DefaultSpec {
                 parser = ParserState.Parsing,
                 processor = ProcessorState.Idle,
                 runtimeStats = Map(
-                  "agent42.example.com" → new RuntimeStats(freeMemory = 111101592,
-                                                           maxMemory = 1900019712,
-                                                           totalMemory = 128974848)
+                  "agent42.example.com" -> new RuntimeStats(freeMemory = 111101592,
+                                                            maxMemory = 1900019712,
+                                                            totalMemory = 128974848)
                 )
               )
             )

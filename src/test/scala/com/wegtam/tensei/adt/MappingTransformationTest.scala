@@ -184,8 +184,8 @@ class MappingTransformationTest extends DefaultSpec {
         )
         val expected = new MappingTransformation(sources, targets, List(t), List(at))
         Parse.decodeEither[MappingTransformation](jsonString) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒ success must be(expected)
+          case -\/(failure) => fail(failure)
+          case \/-(success) => success must be(expected)
         }
       }
     }

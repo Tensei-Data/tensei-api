@@ -65,8 +65,8 @@ class ElementReferenceTest extends DefaultSpec {
             """.stripMargin
 
           Parse.decodeEither[ElementReference](json) match {
-            case -\/(failure) ⇒ fail(failure)
-            case \/-(success) ⇒
+            case -\/(failure) => fail(failure)
+            case \/-(success) =>
               success must be(expectedRef)
               success.dfasdlId must be(expectedRef.dfasdlId)
               success.elementId must be(expectedRef.elementId)
@@ -87,8 +87,8 @@ class ElementReferenceTest extends DefaultSpec {
 
           val encodedRef = ref.asJson
           Parse.parse(expectedJson) match {
-            case -\/(failure) ⇒ fail(failure)
-            case \/-(success) ⇒
+            case -\/(failure) => fail(failure)
+            case \/-(success) =>
               encodedRef must be(success)
               encodedRef.nospaces must be(success.nospaces) // TODO We check the string here because we're unsure if the test above is enough.
           }

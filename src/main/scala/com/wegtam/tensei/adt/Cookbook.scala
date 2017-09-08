@@ -59,21 +59,21 @@ final case class Cookbook(
     * A set of source elements that are used within mappings.
     */
   lazy val usedSourceIds: Set[ElementReference] =
-    recipes.flatMap(recipe ⇒ recipe.mappings.flatMap(mapping ⇒ mapping.sources)).toSet
+    recipes.flatMap(recipe => recipe.mappings.flatMap(mapping => mapping.sources)).toSet
 }
 
 object Cookbook {
 
   implicit def CookbookCodecJson: CodecJson[Cookbook] =
     CodecJson(
-      (c: Cookbook) ⇒
+      (c: Cookbook) =>
         ("recipes" := c.recipes) ->: ("target" := c.target) ->: ("sources" := c.sources) ->: ("id" := c.id) ->: jEmptyObject,
-      cursor ⇒
+      cursor =>
         for {
-          id      ← (cursor --\ "id").as[String]
-          sources ← (cursor --\ "sources").as[List[DFASDL]]
-          target  ← (cursor --\ "target").as[Option[DFASDL]]
-          recipes ← (cursor --\ "recipes").as[List[Recipe]]
+          id      <- (cursor --\ "id").as[String]
+          sources <- (cursor --\ "sources").as[List[DFASDL]]
+          target  <- (cursor --\ "target").as[Option[DFASDL]]
+          recipes <- (cursor --\ "recipes").as[List[Recipe]]
         } yield Cookbook(id, sources, target, recipes)
     )
 

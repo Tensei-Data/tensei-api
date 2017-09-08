@@ -410,8 +410,8 @@ class CookbookTest extends DefaultSpec {
         val expectedCookbook = Cookbook("COOKBOOK-02", sources, target, List(recipe1, recipe2))
 
         Parse.decodeEither[Cookbook](json) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒
+          case -\/(failure) => fail(failure)
+          case \/-(success) =>
             success must be(expectedCookbook)
         }
       }

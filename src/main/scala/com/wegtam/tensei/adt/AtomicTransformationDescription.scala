@@ -37,16 +37,16 @@ object AtomicTransformationDescription {
   implicit def AtomicTransformationDescriptionCodecJson
     : CodecJson[AtomicTransformationDescription] =
     CodecJson(
-      (t: AtomicTransformationDescription) ⇒
+      (t: AtomicTransformationDescription) =>
         ("options" := t.options) ->:
           ("transformerClassName" := t.transformerClassName.toString) ->:
           ("element" := t.element) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          element              ← (c --\ "element").as[ElementReference]
-          transformerClassName ← (c --\ "transformerClassName").as[String]
-          options              ← (c --\ "options").as[TransformerOptions]
+          element              <- (c --\ "element").as[ElementReference]
+          transformerClassName <- (c --\ "transformerClassName").as[String]
+          options              <- (c --\ "options").as[TransformerOptions]
         } yield AtomicTransformationDescription(element, transformerClassName, options)
     )
 
