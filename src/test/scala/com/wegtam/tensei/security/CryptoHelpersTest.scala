@@ -154,8 +154,8 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
           val sourceData = "My voice is my passport, verify me!"
 
           encrypt(sourceData.getBytes, getAESCipher, keyAndIV._1, Option(keyAndIV._2)) match {
-            case -\/(error)   ⇒ fail(error)
-            case \/-(success) ⇒ success.length must be > 0
+            case -\/(error)   => fail(error)
+            case \/-(success) => success.length must be > 0
           }
         }
 
@@ -164,8 +164,8 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
           val sourceData = scala.util.Random.alphanumeric.take(1024).mkString
 
           encrypt(sourceData.getBytes, getAESCipher, keyAndIV._1, Option(keyAndIV._2)) match {
-            case -\/(error)   ⇒ fail(error)
-            case \/-(success) ⇒ success.length must be > 0
+            case -\/(error)   => fail(error)
+            case \/-(success) => success.length must be > 0
           }
         }
       }
@@ -176,8 +176,8 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
           val sourceData = "My voice is my passport, verify me!"
 
           encrypt(sourceData.getBytes, getRSACipher, keyPair.getPublic, None) match {
-            case -\/(error)   ⇒ fail(error)
-            case \/-(success) ⇒ success.length must be > 0
+            case -\/(error)   => fail(error)
+            case \/-(success) => success.length must be > 0
           }
         }
 
@@ -201,12 +201,12 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
           val sourceData = "My voice is my passport, verify me!"
 
           encrypt(sourceData.getBytes, getAESCipher, keyAndIV._1, Option(keyAndIV._2)) fold (
-            error ⇒ fail(error),
-            encryptedData ⇒ {
+            error => fail(error),
+            encryptedData => {
               val decoded = java.util.Base64.getDecoder.decode(encryptedData)
               decrypt(decoded, getAESCipher, keyAndIV._1, Option(keyAndIV._2)) match {
-                case -\/(failure) ⇒ fail(failure)
-                case \/-(success) ⇒ new String(success) must be(sourceData)
+                case -\/(failure) => fail(failure)
+                case \/-(success) => new String(success) must be(sourceData)
               }
             }
           )
@@ -219,12 +219,12 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
           val sourceData = "My voice is my passport, verify me!"
 
           encrypt(sourceData.getBytes, getRSACipher, keyPair.getPublic, None) fold (
-            error ⇒ fail(error),
-            encryptedData ⇒ {
+            error => fail(error),
+            encryptedData => {
               val decoded = java.util.Base64.getDecoder.decode(encryptedData)
               decrypt(decoded, getRSACipher, keyPair.getPrivate, None) match {
-                case -\/(failure) ⇒ fail(failure)
-                case \/-(success) ⇒ new String(success) must be(sourceData)
+                case -\/(failure) => fail(failure)
+                case \/-(success) => new String(success) must be(sourceData)
               }
             }
           )
@@ -238,8 +238,8 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
         val sourceData = "My voice is my passport, verify me!"
 
         sign(sourceData.getBytes, keyPair.getPrivate) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒
+          case -\/(failure) => fail(failure)
+          case \/-(success) =>
             val signature = java.util.Base64.getDecoder.decode(success)
             signature.length must be(256)
             validate(sourceData.getBytes, signature, keyPair.getPublic) must be(right = true)
@@ -251,8 +251,8 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
         val sourceData = scala.util.Random.alphanumeric.take(4096).mkString
 
         sign(sourceData.getBytes, keyPair.getPrivate) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒
+          case -\/(failure) => fail(failure)
+          case \/-(success) =>
             val signature = java.util.Base64.getDecoder.decode(success)
             signature.length must be(256)
             validate(sourceData.getBytes, signature, keyPair.getPublic) must be(right = true)
@@ -266,8 +266,8 @@ class CryptoHelpersTest extends DefaultSpec with CryptoHelpers {
         val licenseString = license.asJson.nospaces
 
         sign(licenseString.getBytes, keyPair.getPrivate) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒
+          case -\/(failure) => fail(failure)
+          case \/-(success) =>
             val messageString =
               List(licenseString, new String(success)).mkString("\n----- SIGNATURE -----\n")
             val messageParts = messageString.split("\n----- SIGNATURE -----\n")

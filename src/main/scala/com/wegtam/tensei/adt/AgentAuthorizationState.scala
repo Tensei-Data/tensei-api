@@ -24,9 +24,9 @@ import argonaut._, Argonaut._
   */
 sealed trait AgentAuthorizationState {
   override def toString: String = this match {
-    case AgentAuthorizationState.Connected    ⇒ "Connected"
-    case AgentAuthorizationState.Disconnected ⇒ "Disconnected"
-    case AgentAuthorizationState.Unauthorized ⇒ "Unauthorized"
+    case AgentAuthorizationState.Connected    => "Connected"
+    case AgentAuthorizationState.Disconnected => "Disconnected"
+    case AgentAuthorizationState.Unauthorized => "Unauthorized"
   }
 }
 
@@ -37,16 +37,16 @@ object AgentAuthorizationState {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def AgentAuthorizationStateCodecJson: CodecJson[AgentAuthorizationState] =
     CodecJson(
-      (s: AgentAuthorizationState) ⇒ jString(s.toString),
-      c ⇒
+      (s: AgentAuthorizationState) => jString(s.toString),
+      c =>
         for {
-          s ← c.as[String]
+          s <- c.as[String]
         } yield
           s match {
-            case "Connected"    ⇒ Connected
-            case "Disconnected" ⇒ Disconnected
-            case "Unauthorized" ⇒ Unauthorized
-            case e: String ⇒
+            case "Connected"    => Connected
+            case "Disconnected" => Disconnected
+            case "Unauthorized" => Unauthorized
+            case e: String =>
               throw new IllegalArgumentException(s"Unknown AgentAuthorizationState: '$e'!")
         }
     )

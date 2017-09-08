@@ -40,15 +40,15 @@ object AgentInformation {
 
   implicit def AgentInformationCodecJson: CodecJson[AgentInformation] =
     CodecJson(
-      (i: AgentInformation) ⇒
+      (i: AgentInformation) =>
         ("workingState" := i.workingState) ->: ("updated" := jNumber(i.lastUpdated)) ->: ("auth" := i.auth) ->: ("path" := i.path) ->: ("id" := i.id) ->: jEmptyObject,
-      c ⇒
+      c =>
         for {
-          id           ← (c --\ "id").as[String]
-          path         ← (c --\ "path").as[String]
-          auth         ← (c --\ "auth").as[AgentAuthorizationState]
-          updated      ← (c --\ "updated").as[Long]
-          workingState ← (c --\ "workingState").as[Option[AgentWorkingState]]
+          id           <- (c --\ "id").as[String]
+          path         <- (c --\ "path").as[String]
+          auth         <- (c --\ "auth").as[AgentAuthorizationState]
+          updated      <- (c --\ "updated").as[Long]
+          workingState <- (c --\ "workingState").as[Option[AgentWorkingState]]
         } yield
           AgentInformation(id = id,
                            path = path,

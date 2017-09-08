@@ -24,9 +24,9 @@ import argonaut._, Argonaut._
   */
 sealed trait ChefDeCuisineState {
   override def toString: String = this match {
-    case ChefDeCuisineState.Booting      ⇒ "Booting"
-    case ChefDeCuisineState.Initializing ⇒ "Initializing"
-    case ChefDeCuisineState.Running      ⇒ "Running"
+    case ChefDeCuisineState.Booting      => "Booting"
+    case ChefDeCuisineState.Initializing => "Initializing"
+    case ChefDeCuisineState.Running      => "Running"
   }
 }
 
@@ -34,16 +34,16 @@ object ChefDeCuisineState {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def ChefDeCuisineStateCodecJson: CodecJson[ChefDeCuisineState] =
     CodecJson(
-      (s: ChefDeCuisineState) ⇒ jString(s.toString),
-      c ⇒
+      (s: ChefDeCuisineState) => jString(s.toString),
+      c =>
         for {
-          s ← c.as[String]
+          s <- c.as[String]
         } yield
           s match {
-            case "Booting"      ⇒ Booting
-            case "Initializing" ⇒ Initializing
-            case "Running"      ⇒ Running
-            case e: String ⇒
+            case "Booting"      => Booting
+            case "Initializing" => Initializing
+            case "Running"      => Running
+            case e: String =>
               throw new IllegalArgumentException(s"Unknown ChefDeCuisineState: '$e'!")
         }
     )

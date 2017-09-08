@@ -79,8 +79,8 @@ class RecipeTest extends DefaultSpec {
         val m        = new MappingTransformation(sources, targets, List(t))
         val expected = Recipe.createAllToAllRecipe("my-recipe", List(m))
         Parse.decodeEither[Recipe](jsonString) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒ success must be(expected)
+          case -\/(failure) => fail(failure)
+          case \/-(success) => success must be(expected)
         }
       }
     }

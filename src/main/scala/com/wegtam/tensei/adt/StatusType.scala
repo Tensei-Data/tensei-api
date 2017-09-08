@@ -25,10 +25,10 @@ import argonaut._, Argonaut._
 sealed trait StatusType {
 
   override def toString: String = this match {
-    case StatusType.MinorError       ⇒ "MinorError"
-    case StatusType.MajorError       ⇒ "MajorError"
-    case StatusType.NoAgentAvailable ⇒ "NoAgentAvailable"
-    case StatusType.FatalError       ⇒ "FatalError"
+    case StatusType.MinorError       => "MinorError"
+    case StatusType.MajorError       => "MajorError"
+    case StatusType.NoAgentAvailable => "NoAgentAvailable"
+    case StatusType.FatalError       => "FatalError"
   }
 
 }
@@ -38,17 +38,17 @@ object StatusType {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def StatusTypeCodecJson: CodecJson[StatusType] =
     CodecJson(
-      (s: StatusType) ⇒ jString(s.toString),
-      c ⇒
+      (s: StatusType) => jString(s.toString),
+      c =>
         for {
-          s ← c.as[String]
+          s <- c.as[String]
         } yield
           s match {
-            case "MinorError"       ⇒ MinorError
-            case "MajorError"       ⇒ MajorError
-            case "NoAgentAvailable" ⇒ NoAgentAvailable
-            case "FatalError"       ⇒ FatalError
-            case e: String          ⇒ throw new IllegalArgumentException(s"Unknown StatusType: '$e'!")
+            case "MinorError"       => MinorError
+            case "MajorError"       => MajorError
+            case "NoAgentAvailable" => NoAgentAvailable
+            case "FatalError"       => FatalError
+            case e: String          => throw new IllegalArgumentException(s"Unknown StatusType: '$e'!")
         }
     )
 

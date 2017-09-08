@@ -44,35 +44,35 @@ object Recipe {
 
   implicit def RecipeCodecJson: CodecJson[Recipe] =
     CodecJson(
-      (r: Recipe) ⇒
+      (r: Recipe) =>
         ("mappings" := r.mappings) ->:
           ("mode" := r.mode) ->:
           ("id" := r.id) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          id       ← (c --\ "id").as[String]
-          mode     ← (c --\ "mode").as[RecipeMode]
-          mappings ← (c --\ "mappings").as[List[MappingTransformation]]
+          id       <- (c --\ "id").as[String]
+          mode     <- (c --\ "mode").as[RecipeMode]
+          mappings <- (c --\ "mappings").as[List[MappingTransformation]]
         } yield Recipe(id, mode, mappings)
     )
 
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def RecipeModeCodecJson: CodecJson[RecipeMode] =
     CodecJson(
-      (m: RecipeMode) ⇒
+      (m: RecipeMode) =>
         m match {
-          case MapAllToAll ⇒ jString("MapAllToAll")
-          case MapOneToOne ⇒ jString("MapOneToOne")
+          case MapAllToAll => jString("MapAllToAll")
+          case MapOneToOne => jString("MapOneToOne")
       },
-      cursor ⇒
+      cursor =>
         for {
-          modeName ← cursor.as[String]
+          modeName <- cursor.as[String]
         } yield {
           modeName match {
-            case "MapAllToAll" ⇒ MapAllToAll
-            case "MapOneToOne" ⇒ MapOneToOne
-            case _             ⇒ throw new IllegalArgumentException(s"Unknown recipe mode name $modeName!")
+            case "MapAllToAll" => MapAllToAll
+            case "MapOneToOne" => MapOneToOne
+            case _             => throw new IllegalArgumentException(s"Unknown recipe mode name $modeName!")
           }
       }
     )

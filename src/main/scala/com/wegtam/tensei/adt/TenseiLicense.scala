@@ -66,10 +66,10 @@ object TenseiLicense {
     */
   implicit def LocalDateCodecJson: CodecJson[LocalDate] =
     CodecJson(
-      (d: LocalDate) ⇒ jString(d.toString),
-      cursor ⇒
+      (d: LocalDate) => jString(d.toString),
+      cursor =>
         for {
-          dateString ← cursor.as[String]
+          dateString <- cursor.as[String]
         } yield LocalDate.parse(dateString)
     )
 
@@ -80,7 +80,7 @@ object TenseiLicense {
     */
   implicit def TenseiLicenseCodecJson: CodecJson[TenseiLicense] =
     CodecJson(
-      (l: TenseiLicense) ⇒
+      (l: TenseiLicense) =>
         ("playload" := generatePayload())
           ->: ("expiration-date" := l.expirationDate)
           ->: ("triggers" := l.triggers)
@@ -91,16 +91,16 @@ object TenseiLicense {
           ->: ("licensee" := l.licensee)
           ->: ("id" := l.id)
           ->: jEmptyObject,
-      cursor ⇒
+      cursor =>
         for {
-          id             ← (cursor --\ "id").as[String]
-          licensee       ← (cursor --\ "licensee").as[String]
-          agents         ← (cursor --\ "agents").as[Int]
-          users          ← (cursor --\ "users").as[Int]
-          configurations ← (cursor --\ "configurations").as[Int]
-          cronjobs       ← (cursor --\ "cronjobs").as[Int]
-          triggers       ← (cursor --\ "triggers").as[Int]
-          expirationDate ← (cursor --\ "expiration-date").as[LocalDate]
+          id             <- (cursor --\ "id").as[String]
+          licensee       <- (cursor --\ "licensee").as[String]
+          agents         <- (cursor --\ "agents").as[Int]
+          users          <- (cursor --\ "users").as[Int]
+          configurations <- (cursor --\ "configurations").as[Int]
+          cronjobs       <- (cursor --\ "cronjobs").as[Int]
+          triggers       <- (cursor --\ "triggers").as[Int]
+          expirationDate <- (cursor --\ "expiration-date").as[LocalDate]
         } yield
           TenseiLicense(id = id,
                         licensee = licensee,

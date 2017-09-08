@@ -45,9 +45,9 @@ final case class DFASDL(
 
   override def equals(obj: scala.Any): Boolean =
     obj match {
-      case other: DFASDL ⇒
+      case other: DFASDL =>
         id == other.id && content == other.content && version == other.version
-      case _ ⇒ false
+      case _ => false
     }
 
   override def hashCode(): Int =
@@ -64,13 +64,13 @@ object DFASDL {
 
   implicit def DFASDLCodecJson: CodecJson[DFASDL] =
     CodecJson(
-      (dfasdl: DFASDL) ⇒
+      (dfasdl: DFASDL) =>
         ("id" := dfasdl.id) ->: ("content" := dfasdl.content) ->: ("version" := dfasdl.version) ->: jEmptyObject,
-      cursor ⇒
+      cursor =>
         for {
-          id      ← (cursor --\ "id").as[String]
-          content ← (cursor --\ "content").as[String]
-          version ← (cursor --\ "version").as[String]
+          id      <- (cursor --\ "id").as[String]
+          content <- (cursor --\ "content").as[String]
+          version <- (cursor --\ "version").as[String]
         } yield DFASDL(id, content, version)
     )
 
@@ -106,11 +106,11 @@ object DFASDL {
         // Try to examine the largest existing auto-id counter.
         if (e.hasAttribute("id"))
           e.getAttribute("id") match {
-            case AUTO_ID_REGEX(counter) ⇒
+            case AUTO_ID_REGEX(counter) =>
               // An auto-generated ID.
               val cnt = counter.toLong
               if (cnt > idCounter) idCounter = cnt
-            case _ ⇒
+            case _ =>
             // A regular ID.
           }
         // If we aren't the root element we must have an id.
@@ -125,7 +125,7 @@ object DFASDL {
       // Only loop again if neccessary.
       if (needsAutoIds) {
         elementList.foreach(
-          e ⇒
+          e =>
             if (e.getTagName != DFASDL_ROOT_ELEMENT && (!e
                   .hasAttribute("id") || e.getAttribute("id").isEmpty)) {
               idCounter = idCounter + 1

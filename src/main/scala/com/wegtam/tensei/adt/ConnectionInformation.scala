@@ -42,7 +42,7 @@ object ConnectionInformation {
 
   implicit def ConnectionInformationCodecJson: CodecJson[ConnectionInformation] =
     CodecJson(
-      (c: ConnectionInformation) ⇒
+      (c: ConnectionInformation) =>
         ("languageTag" := c.languageTag) ->:
           ("checksum" := c.checksum) ->:
           ("password" := c.password) ->:
@@ -50,14 +50,14 @@ object ConnectionInformation {
           ("dfasdlRef" := c.dfasdlRef) ->:
           ("uri" := c.uri.toString) ->:
         jEmptyObject,
-      c ⇒
+      c =>
         for {
-          uri         ← (c --\ "uri").as[String]
-          dfasdlRef   ← (c --\ "dfasdlRef").as[Option[DFASDLReference]]
-          username    ← (c --\ "username").as[Option[String]]
-          password    ← (c --\ "password").as[Option[String]]
-          checksum    ← (c --\ "checksum").as[Option[String]]
-          languageTag ← (c --\ "languageTag").as[Option[String]]
+          uri         <- (c --\ "uri").as[String]
+          dfasdlRef   <- (c --\ "dfasdlRef").as[Option[DFASDLReference]]
+          username    <- (c --\ "username").as[Option[String]]
+          password    <- (c --\ "password").as[Option[String]]
+          checksum    <- (c --\ "checksum").as[Option[String]]
+          languageTag <- (c --\ "languageTag").as[Option[String]]
         } yield
           ConnectionInformation(new URI(uri), dfasdlRef, username, password, checksum, languageTag)
     )

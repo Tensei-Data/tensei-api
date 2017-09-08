@@ -24,13 +24,13 @@ import argonaut._, Argonaut._
   */
 sealed trait ParserState {
   override def toString: String = this match {
-    case ParserState.Idle                   ⇒ "Idle"
-    case ParserState.ValidatingSyntax       ⇒ "ValidatingSyntax"
-    case ParserState.ValidatingAccess       ⇒ "ValidatingAccess"
-    case ParserState.ValidatingChecksums    ⇒ "ValidatingChecksums"
-    case ParserState.PreparingSourceData    ⇒ "PreparingSourceData"
-    case ParserState.InitializingSubParsers ⇒ "InitializingSubParsers"
-    case ParserState.Parsing                ⇒ "Parsing"
+    case ParserState.Idle                   => "Idle"
+    case ParserState.ValidatingSyntax       => "ValidatingSyntax"
+    case ParserState.ValidatingAccess       => "ValidatingAccess"
+    case ParserState.ValidatingChecksums    => "ValidatingChecksums"
+    case ParserState.PreparingSourceData    => "PreparingSourceData"
+    case ParserState.InitializingSubParsers => "InitializingSubParsers"
+    case ParserState.Parsing                => "Parsing"
   }
 }
 
@@ -38,20 +38,20 @@ object ParserState {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def ParserStateCodecJson: CodecJson[ParserState] =
     CodecJson(
-      (s: ParserState) ⇒ jString(s.toString),
-      c ⇒
+      (s: ParserState) => jString(s.toString),
+      c =>
         for {
-          s ← c.as[String]
+          s <- c.as[String]
         } yield
           s match {
-            case "Idle"                   ⇒ Idle
-            case "ValidatingSyntax"       ⇒ ValidatingSyntax
-            case "ValidatingAccess"       ⇒ ValidatingAccess
-            case "ValidatingChecksums"    ⇒ ValidatingChecksums
-            case "PreparingSourceData"    ⇒ PreparingSourceData
-            case "InitializingSubParsers" ⇒ InitializingSubParsers
-            case "Parsing"                ⇒ Parsing
-            case e: String                ⇒ throw new IllegalArgumentException(s"Unknown ParserState: '$e'!")
+            case "Idle"                   => Idle
+            case "ValidatingSyntax"       => ValidatingSyntax
+            case "ValidatingAccess"       => ValidatingAccess
+            case "ValidatingChecksums"    => ValidatingChecksums
+            case "PreparingSourceData"    => PreparingSourceData
+            case "InitializingSubParsers" => InitializingSubParsers
+            case "Parsing"                => Parsing
+            case e: String                => throw new IllegalArgumentException(s"Unknown ParserState: '$e'!")
         }
     )
 

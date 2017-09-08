@@ -317,8 +317,8 @@ class AgentStartTransformationMessageTest extends DefaultSpec {
                                               Cookbook("ANOTHER-COOKBOOK", sources, target, r))
 
         Parse.decodeEither[AgentStartTransformationMessage](jsonString) match {
-          case -\/(failure) ⇒ fail(failure)
-          case \/-(success) ⇒ success must be(expected)
+          case -\/(failure) => fail(failure)
+          case \/-(success) => success must be(expected)
         }
       }
     }

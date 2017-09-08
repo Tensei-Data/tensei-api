@@ -43,16 +43,16 @@ final case class AgentWorkingState(
 object AgentWorkingState {
   implicit def AgentWorkingStateCodecJson: CodecJson[AgentWorkingState] =
     CodecJson(
-      (s: AgentWorkingState) ⇒
+      (s: AgentWorkingState) =>
         ("uniqueIdentifier" := s.uniqueIdentifier) ->: ("runtime" := s.runtimeStats) ->: ("processor" := s.processor) ->: ("parser" := s.parser) ->: ("state" := s.state) ->: ("id" := s.id) ->: jEmptyObject,
-      c ⇒
+      c =>
         for {
-          id               ← (c --\ "id").as[String]
-          agentState       ← (c --\ "state").as[TenseiAgentState]
-          parserState      ← (c --\ "parser").as[ParserState]
-          processorState   ← (c --\ "processor").as[ProcessorState]
-          runtime          ← (c --\ "runtime").as[Map[String, RuntimeStats]]
-          uniqueIdentifier ← (c --\ "uniqueIdentifier").as[Option[String]]
+          id               <- (c --\ "id").as[String]
+          agentState       <- (c --\ "state").as[TenseiAgentState]
+          parserState      <- (c --\ "parser").as[ParserState]
+          processorState   <- (c --\ "processor").as[ProcessorState]
+          runtime          <- (c --\ "runtime").as[Map[String, RuntimeStats]]
+          uniqueIdentifier <- (c --\ "uniqueIdentifier").as[Option[String]]
         } yield
           AgentWorkingState(id = id,
                             state = agentState,

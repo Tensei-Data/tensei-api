@@ -29,14 +29,14 @@ class ExtractSchemaOptionsTest extends DefaultSpec with PropertyChecks {
 
   private val charsets = Charset.availableCharsets().keySet().asScala.toVector :+ ""
   private val csvOptions = for {
-    header    ← Gen.oneOf(false, true)
-    separator ← Gen.alphaNumStr
-    encoding  ← Gen.oneOf(charsets)
+    header    <- Gen.oneOf(false, true)
+    separator <- Gen.alphaNumStr
+    encoding  <- Gen.oneOf(charsets)
   } yield (header, separator, encoding)
 
   describe("#createCsvOptions") {
     it("must create proper options") {
-      forAll(csvOptions) { o ⇒
+      forAll(csvOptions) { o =>
         val (h, s, e) = o
         val expectedOptions = ExtractSchemaOptions(
           csvHeader = h,

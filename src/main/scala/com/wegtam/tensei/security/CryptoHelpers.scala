@@ -77,11 +77,11 @@ trait CryptoHelpers {
               iv: Option[Array[Byte]]): Throwable \/ Array[Byte] =
     try {
       iv.fold(cipher.init(Cipher.DECRYPT_MODE, key))(
-        i ⇒ cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(i))
+        i => cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(i))
       )
       cipher.doFinal(source).right
     } catch {
-      case e: Throwable ⇒ e.left
+      case e: Throwable => e.left
     }
 
   /**
@@ -112,12 +112,12 @@ trait CryptoHelpers {
               iv: Option[Array[Byte]] = None): Throwable \/ Array[Byte] =
     try {
       iv.fold(cipher.init(Cipher.ENCRYPT_MODE, key))(
-        i ⇒ cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(i))
+        i => cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(i))
       )
       val encryptedSource = cipher.doFinal(source)
       Base64.getEncoder.encode(encryptedSource).right
     } catch {
-      case e: Throwable ⇒ e.left
+      case e: Throwable => e.left
     }
 
   /**
@@ -197,13 +197,13 @@ trait CryptoHelpers {
     val exp        = new BigInteger(exponent)
 
     keyType match {
-      case PRIVATE ⇒
+      case PRIVATE =>
         val keySpec = new RSAPrivateKeySpec(mod, exp)
         keyFactory.generatePrivate(keySpec)
-      case PUBLIC ⇒
+      case PUBLIC =>
         val keySpec = new RSAPublicKeySpec(mod, exp)
         keyFactory.generatePublic(keySpec)
-      case _ ⇒ throw new IllegalArgumentException(s"Unknown RSA key type: $keyType!")
+      case _ => throw new IllegalArgumentException(s"Unknown RSA key type: $keyType!")
     }
   }
 
@@ -241,7 +241,7 @@ trait CryptoHelpers {
       val signature = signatureProvider.sign()
       Base64.getEncoder.encode(signature).right
     } catch {
-      case e: Throwable ⇒ e.left
+      case e: Throwable => e.left
     }
 
   /**

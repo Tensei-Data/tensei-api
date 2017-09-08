@@ -24,11 +24,11 @@ import argonaut._, Argonaut._
   */
 sealed trait MappingSuggesterModes {
   override def toString: String = this match {
-    case MappingSuggesterModes.Simple                          ⇒ "Simple"
-    case MappingSuggesterModes.SimpleWithTransformers          ⇒ "SimpleWithTransformers"
-    case MappingSuggesterModes.SimpleSemantics                 ⇒ "SimpleSemantics"
-    case MappingSuggesterModes.SimpleSemanticsWithTransformers ⇒ "SimpleSemanticsWithTransformers"
-    case MappingSuggesterModes.AdvancedSemantics               ⇒ "AdvancedSemantics"
+    case MappingSuggesterModes.Simple                          => "Simple"
+    case MappingSuggesterModes.SimpleWithTransformers          => "SimpleWithTransformers"
+    case MappingSuggesterModes.SimpleSemantics                 => "SimpleSemantics"
+    case MappingSuggesterModes.SimpleSemanticsWithTransformers => "SimpleSemanticsWithTransformers"
+    case MappingSuggesterModes.AdvancedSemantics               => "AdvancedSemantics"
   }
 }
 
@@ -39,18 +39,18 @@ object MappingSuggesterModes {
   @SuppressWarnings(Array("org.wartremover.warts.Throw"))
   implicit def MappingSuggesterModesCodecJson: CodecJson[MappingSuggesterModes] =
     CodecJson(
-      (m: MappingSuggesterModes) ⇒ jString(m.toString),
-      c ⇒
+      (m: MappingSuggesterModes) => jString(m.toString),
+      c =>
         for {
-          m ← c.as[String]
+          m <- c.as[String]
         } yield
           m match {
-            case "Simple"                          ⇒ Simple
-            case "SimpleWithTransformers"          ⇒ SimpleWithTransformers
-            case "SimpleSemantics"                 ⇒ SimpleSemantics
-            case "SimpleSemanticsWithTransformers" ⇒ SimpleSemanticsWithTransformers
-            case "AdvancedSemantics"               ⇒ AdvancedSemantics
-            case e: String ⇒
+            case "Simple"                          => Simple
+            case "SimpleWithTransformers"          => SimpleWithTransformers
+            case "SimpleSemantics"                 => SimpleSemantics
+            case "SimpleSemanticsWithTransformers" => SimpleSemanticsWithTransformers
+            case "AdvancedSemantics"               => AdvancedSemantics
+            case e: String =>
               throw new IllegalArgumentException(s"Unknown MappingSuggesterMode: '$e'!")
         }
     )

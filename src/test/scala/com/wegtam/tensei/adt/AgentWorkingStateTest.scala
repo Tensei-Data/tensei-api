@@ -50,7 +50,7 @@ class AgentWorkingStateTest extends DefaultSpec {
                                                          TenseiAgentState.Working,
                                                          ParserState.Parsing,
                                                          ProcessorState.Idle,
-                                                         Map("1" → RuntimeStats(50, 100, 200)),
+                                                         Map("1" -> RuntimeStats(50, 100, 200)),
                                                          None)
 
             Parse.decodeOption[AgentWorkingState](json).get must be(expectedWorkingState)
@@ -83,7 +83,7 @@ class AgentWorkingStateTest extends DefaultSpec {
               TenseiAgentState.Working,
               ParserState.Parsing,
               ProcessorState.Idle,
-              Map("1" → RuntimeStats(50, 100, 200)),
+              Map("1" -> RuntimeStats(50, 100, 200)),
               Option("de305d54-75b4-431b-adb2-eb6b9e546013")
             )
 
@@ -99,7 +99,7 @@ class AgentWorkingStateTest extends DefaultSpec {
                                           TenseiAgentState.Working,
                                           ParserState.Parsing,
                                           ProcessorState.Idle,
-                                          Map("1" → RuntimeStats(50, 100, 200)))
+                                          Map("1" -> RuntimeStats(50, 100, 200)))
             val expectedJson =
               """{"uniqueIdentifier":null,"state":"Working","parser":"Parsing","id":"MY-AGENT","processor":"Idle","runtime":{"1":{"processors":1,"load":null,"total":200,"max":100,"free":50}}}"""
             state.asJson.nospaces must be(expectedJson)
@@ -113,7 +113,7 @@ class AgentWorkingStateTest extends DefaultSpec {
               TenseiAgentState.Working,
               ParserState.Parsing,
               ProcessorState.Idle,
-              Map("1" → RuntimeStats(50, 100, 200)),
+              Map("1" -> RuntimeStats(50, 100, 200)),
               Option("de305d54-75b4-431b-adb2-eb6b9e546013")
             )
             val expectedJson =

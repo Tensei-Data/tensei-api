@@ -305,8 +305,8 @@ class TenseiLicenseTest extends DefaultSpec {
              """.stripMargin.trim
 
           Parse.decodeEither[TenseiLicense](jsonString) match {
-            case -\/(error) ⇒ fail(error)
-            case \/-(actualLicense) ⇒
+            case -\/(error) => fail(error)
+            case \/-(actualLicense) =>
               actualLicense.licensee must be(expectedLicense.licensee)
               actualLicense.agents must be(expectedLicense.agents)
               actualLicense.users must be(expectedLicense.users)
@@ -345,7 +345,7 @@ class TenseiLicenseTest extends DefaultSpec {
           )
 
           val actualJson = license.asJson.spaces2
-          expectedParts.foreach { part ⇒
+          expectedParts.foreach { part =>
             actualJson must include(part)
           }
         }
