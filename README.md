@@ -18,6 +18,15 @@ Currently the following sub projects are included in this repository:
 
 The main website for Tensei-Data is located at: https://www.wegtam.com/products/tensei-data
 
+### Downloads
+
+You can find the source archives on the 
+[releases page](https://github.com/Tensei-Data/tensei-api/releases).
+
+Releases are published on bintray and should be synced to jcenter. To use the bintray repository directly just add the appropriate resolver to your sbt configuration:
+
+    resolvers += "Tensei-Data" at "https://dl.bintray.com/wegtam/tensei-data"
+
 ### Mailing lists
 
 [![Google-Group tensei-data](https://img.shields.io/badge/group-tensei--data-brightgreen.svg)](https://groups.google.com/forum/#!forum/tensei-data)
